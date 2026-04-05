@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anna Kudyba | Business & Data Analyst</title>
+    <title>Anna | Data Visualization Expert</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f4efe7;
-            --bg-deep: #e7ddd0;
-            --ink: #111111;
-            --muted: #51483d;
-            --card: rgba(255, 250, 244, 0.68);
-            --line: rgba(17, 17, 17, 0.1);
-            --accent-coral: #ff7a59;
-            --accent-gold: #f5c15d;
-            --accent-teal: #48b8b0;
-            --accent-navy: #19324f;
-            --shadow: 0 20px 60px rgba(52, 38, 20, 0.12);
+            --bg: #f6efe6;
+            --bg-deep: #eadcc9;
+            --paper: rgba(255, 250, 244, 0.76);
+            --paper-strong: rgba(255, 251, 247, 0.92);
+            --ink: #151515;
+            --muted: #5d5348;
+            --line: rgba(21, 21, 21, 0.1);
+            --navy: #1f3d60;
+            --teal: #2f8f88;
+            --gold: #d7a546;
+            --coral: #d86848;
+            --shadow: 0 22px 70px rgba(69, 50, 28, 0.14);
         }
 
         * {
@@ -37,10 +38,10 @@
             font-family: "Manrope", sans-serif;
             color: var(--ink);
             background:
-                radial-gradient(circle at 12% 18%, rgba(255, 122, 89, 0.24), transparent 24%),
-                radial-gradient(circle at 80% 14%, rgba(72, 184, 176, 0.18), transparent 24%),
-                radial-gradient(circle at 72% 72%, rgba(245, 193, 93, 0.22), transparent 28%),
-                linear-gradient(135deg, #f8f2ea 0%, var(--bg) 45%, var(--bg-deep) 100%);
+                radial-gradient(circle at 12% 14%, rgba(215, 165, 70, 0.18), transparent 22%),
+                radial-gradient(circle at 80% 18%, rgba(47, 143, 136, 0.16), transparent 20%),
+                radial-gradient(circle at 72% 76%, rgba(216, 104, 72, 0.14), transparent 22%),
+                linear-gradient(135deg, #fbf7f1 0%, var(--bg) 48%, var(--bg-deep) 100%);
             overflow-x: hidden;
         }
 
@@ -49,131 +50,171 @@
             text-decoration: none;
         }
 
-        .hero {
+        .page-shell {
             position: relative;
             min-height: 100vh;
-            padding: 32px;
-            display: flex;
-            align-items: stretch;
+            padding: 18px;
             isolation: isolate;
         }
 
-        .hero::before {
+        .page-shell::before {
             content: "";
             position: absolute;
-            inset: 18px;
-            border: 1px solid rgba(17, 17, 17, 0.08);
+            inset: 10px;
+            border: 1px solid var(--line);
             border-radius: 28px;
             pointer-events: none;
         }
 
-        .hero-noise,
-        .hero-glow,
-        #hero-canvas {
+        .grid-backdrop,
+        .glow-backdrop,
+        #particle-canvas {
             position: absolute;
             inset: 0;
         }
 
-        .hero-noise {
-            opacity: 0.18;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(17, 17, 17, 0.04) 1px, transparent 1px);
-            background-size: 34px 34px;
-            mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
+        .grid-backdrop {
             z-index: -3;
+            opacity: 0.22;
+            background-image:
+                linear-gradient(rgba(21, 21, 21, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(21, 21, 21, 0.035) 1px, transparent 1px);
+            background-size: 34px 34px;
+            mask-image: radial-gradient(circle at center, black 36%, transparent 84%);
         }
 
-        .hero-glow {
+        .glow-backdrop {
             z-index: -2;
-            filter: blur(22px);
-            opacity: 0.8;
+            filter: blur(28px);
+            opacity: 0.9;
             background:
-                radial-gradient(circle at 65% 32%, rgba(255, 122, 89, 0.36), transparent 16%),
-                radial-gradient(circle at 70% 56%, rgba(72, 184, 176, 0.34), transparent 20%),
-                radial-gradient(circle at 56% 54%, rgba(25, 50, 79, 0.16), transparent 18%);
+                radial-gradient(circle at 15% 22%, rgba(215, 165, 70, 0.28), transparent 18%),
+                radial-gradient(circle at 72% 30%, rgba(47, 143, 136, 0.22), transparent 18%),
+                radial-gradient(circle at 64% 66%, rgba(31, 61, 96, 0.16), transparent 18%);
         }
 
-        #hero-canvas {
+        #particle-canvas {
             z-index: -1;
         }
 
-        .hero-inner {
-            width: min(1240px, 100%);
+        .hero {
+            width: min(1320px, 100%);
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-            gap: 52px;
+            min-height: calc(100vh - 36px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 18px 10px 22px;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
             align-items: center;
+            gap: 18px;
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .nav a {
+            transition: color 180ms ease;
+        }
+
+        .nav a:hover {
+            color: var(--ink);
+        }
+
+        .nav-cta {
+            padding: 11px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid var(--line);
+            color: var(--ink);
+        }
+
+        .hero-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 22px;
+            align-items: center;
+            padding: 22px 10px 30px;
         }
 
         .hero-copy {
-            padding: 42px 0;
+            padding: 16px 0;
+            max-width: 980px;
         }
 
         .eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 26px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
             color: var(--muted);
+            font-size: 0.73rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
         }
 
         .eyebrow::before {
             content: "";
             width: 52px;
             height: 1px;
-            background: rgba(17, 17, 17, 0.32);
+            background: rgba(21, 21, 21, 0.25);
         }
 
-        .hero h1 {
-            max-width: 9.5ch;
-            font-family: "Cormorant Garamond", serif;
-            font-size: clamp(4.4rem, 9vw, 8.6rem);
-            font-weight: 600;
-            line-height: 0.9;
-            letter-spacing: -0.05em;
+        h1 {
+            margin-top: 18px;
+            max-width: 20ch;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.35rem, 5vw, 4.15rem);
+            font-weight: 700;
+            line-height: 1.02;
+            letter-spacing: -0.04em;
         }
 
-        .hero h1 .accent {
-            display: block;
-            color: var(--accent-navy);
+        h1 .accent {
+            display: inline;
+            color: var(--navy);
+            font-style: normal;
         }
 
-        .hero-lead {
-            max-width: 690px;
-            margin-top: 26px;
-            font-size: clamp(1rem, 1.5vw, 1.18rem);
-            line-height: 1.8;
+        .lead {
+            max-width: 720px;
+            margin-top: 24px;
             color: var(--muted);
+            font-size: clamp(1rem, 1.45vw, 1.14rem);
+            line-height: 1.82;
         }
 
-        .hero-lead strong {
+        .lead strong {
             color: var(--ink);
         }
 
-        .hero-actions {
+        .actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 34px;
+            gap: 14px;
+            margin-top: 30px;
         }
 
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            padding: 15px 24px;
             min-width: 180px;
-            padding: 15px 22px;
             border-radius: 999px;
-            border: 1px solid rgba(17, 17, 17, 0.12);
-            font-size: 0.96rem;
-            font-weight: 700;
-            transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+            border: 1px solid var(--line);
+            font-size: 0.95rem;
+            font-weight: 800;
+            transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
             backdrop-filter: blur(18px);
         }
 
@@ -182,183 +223,206 @@
         }
 
         .button-primary {
-            color: #fff7ef;
             background: var(--ink);
+            color: #fff7ef;
             box-shadow: var(--shadow);
         }
 
         .button-secondary {
-            background: rgba(255, 255, 255, 0.42);
+            background: rgba(255, 255, 255, 0.48);
         }
 
-        .button-secondary:hover {
-            background: rgba(255, 255, 255, 0.7);
-        }
-
-        .hero-meta {
+        .tools-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 14px;
-            margin-top: 42px;
-            max-width: 760px;
+            max-width: 980px;
+            margin-top: 36px;
         }
 
-        .meta-card {
-            padding: 18px 18px 20px;
-            border: 1px solid rgba(17, 17, 17, 0.08);
-            border-radius: 20px;
-            background: rgba(255, 250, 244, 0.52);
-            backdrop-filter: blur(20px);
-        }
-
-        .meta-label {
-            margin-bottom: 10px;
-            font-size: 0.78rem;
-            font-weight: 800;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: rgba(17, 17, 17, 0.48);
-        }
-
-        .meta-value {
-            font-size: 0.98rem;
-            line-height: 1.45;
-            color: var(--ink);
-        }
-
-        .hero-panel {
+        .tool-card {
             position: relative;
-            padding: 24px;
-            border: 1px solid rgba(17, 17, 17, 0.08);
-            border-radius: 30px;
-            background: linear-gradient(180deg, rgba(255, 252, 248, 0.7), rgba(255, 247, 239, 0.46));
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(22px);
+            min-height: 128px;
+            padding: 18px;
+            border-radius: 20px;
+            background: rgba(255, 250, 244, 0.56);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(20px);
+            transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+            display: grid;
+            place-items: center;
             overflow: hidden;
         }
 
-        .hero-panel::after {
-            content: "";
-            position: absolute;
-            inset: auto -60px -90px auto;
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 122, 89, 0.34), transparent 70%);
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(31, 61, 96, 0.18);
+            background: rgba(255, 251, 247, 0.92);
+            box-shadow: 0 18px 36px rgba(31, 61, 96, 0.1);
         }
 
-        .panel-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(17, 17, 17, 0.08);
-            font-size: 0.83rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .panel-chip::before {
-            content: "";
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-coral), var(--accent-teal));
-        }
-
-        .panel-title {
-            margin-top: 18px;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            line-height: 1.05;
-            letter-spacing: -0.04em;
-        }
-
-        .panel-copy {
-            margin-top: 16px;
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--muted);
-        }
-
-        .signal-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .signal-card {
-            padding: 16px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.66);
-            border: 1px solid rgba(17, 17, 17, 0.08);
-        }
-
-        .signal-title {
-            font-size: 0.82rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: rgba(17, 17, 17, 0.45);
-        }
-
-        .signal-value {
-            margin-top: 12px;
-            font-family: "Cormorant Garamond", serif;
-            font-size: 2rem;
+        .tool-value {
+            font-size: 1.08rem;
             font-weight: 700;
-            line-height: 1;
+            line-height: 1.35;
+            transition: transform 220ms ease, opacity 220ms ease;
         }
 
-        .signal-detail {
+        .tool-card:hover .tool-value {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
+        .tool-logo {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            transform: scale(0.88);
+            transition: opacity 220ms ease, transform 220ms ease;
+            pointer-events: none;
+        }
+
+        .tool-card:hover .tool-logo {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .tool-logo img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 18px rgba(31, 61, 96, 0.1));
+        }
+
+        .tool-logo .sql-glyph {
+            width: 58px;
+            height: 58px;
+            display: block;
+        }
+
+        .intro-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .portrait-frame {
+            position: relative;
+            width: 108px;
+            height: 108px;
+            flex: 0 0 108px;
+            min-height: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #d7d0c8;
+            border: 2px solid rgba(255, 255, 255, 0.78);
+            box-shadow: 0 10px 30px rgba(31, 61, 96, 0.14);
+        }
+
+        .portrait-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 10%;
+            filter: grayscale(100%);
+            transform: scale(1.12);
+        }
+
+        .projects-strip {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .project-card {
+            position: relative;
+            display: block;
+            padding: 16px;
+            border-radius: 22px;
+            background: rgba(255, 251, 247, 0.7);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(18px);
+            transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(31, 61, 96, 0.18);
+            background: rgba(255, 251, 247, 0.95);
+            box-shadow: 0 18px 40px rgba(31, 61, 96, 0.12);
+        }
+
+        .project-card h2 {
+            font-size: 1rem;
+            line-height: 1.35;
+        }
+
+        .project-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .project-icon {
+            display: inline-grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: rgba(31, 61, 96, 0.08);
+            color: var(--navy);
+            font-size: 1.15rem;
+        }
+
+        .project-arrow {
+            color: var(--navy);
+            font-size: 1rem;
+            transition: transform 220ms ease;
+        }
+
+        .project-card:hover .project-arrow {
+            transform: translateX(4px);
+        }
+
+        .project-card p {
             margin-top: 8px;
-            font-size: 0.92rem;
-            line-height: 1.5;
             color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.55;
         }
 
-        .tool-row {
+        .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 22px;
+            gap: 8px;
+            margin-top: 14px;
         }
 
-        .tool-pill {
-            padding: 9px 12px;
+        .project-tags span {
+            padding: 8px 10px;
             border-radius: 999px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            background: rgba(17, 17, 17, 0.04);
-            border: 1px solid rgba(17, 17, 17, 0.08);
-        }
-
-        .scroll-note {
-            position: absolute;
-            right: 38px;
-            bottom: 30px;
-            font-size: 0.78rem;
+            background: rgba(21, 21, 21, 0.04);
+            border: 1px solid rgba(21, 21, 21, 0.06);
+            font-size: 0.76rem;
             font-weight: 800;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: rgba(17, 17, 17, 0.42);
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(24px);
+            transform: translateY(22px);
             animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         .delay-1 { animation-delay: 0.08s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.32s; }
-        .delay-4 { animation-delay: 0.44s; }
+        .delay-2 { animation-delay: 0.18s; }
+        .delay-3 { animation-delay: 0.28s; }
+        .delay-4 { animation-delay: 0.4s; }
 
         @keyframes rise {
             to {
@@ -367,55 +431,50 @@
             }
         }
 
-        @media (max-width: 1080px) {
-            .hero {
-                padding: 22px;
-            }
-
-            .hero-inner {
+        @media (max-width: 1160px) {
+            .projects-strip {
                 grid-template-columns: 1fr;
-                gap: 28px;
-            }
-
-            .hero h1 {
-                max-width: 11ch;
-            }
-
-            .scroll-note {
-                display: none;
             }
         }
 
-        @media (max-width: 720px) {
-            .hero {
-                padding: 16px;
-                min-height: auto;
+        @media (max-width: 760px) {
+            .page-shell {
+                padding: 12px;
             }
 
-            .hero::before {
-                inset: 10px;
+            .page-shell::before {
+                inset: 6px;
                 border-radius: 22px;
             }
 
-            .hero-copy,
-            .hero-panel {
-                padding-left: 8px;
-                padding-right: 8px;
+            .nav {
+                gap: 12px;
             }
 
-            .hero h1 {
-                font-size: clamp(3.2rem, 18vw, 5.1rem);
+            h1 {
+                font-size: clamp(2rem, 11vw, 3rem);
             }
 
-            .hero-actions,
-            .hero-meta,
-            .signal-grid {
-                grid-template-columns: 1fr;
+            .actions {
                 flex-direction: column;
             }
 
             .button {
                 width: 100%;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .intro-meta {
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -433,98 +492,177 @@
     </style>
 </head>
 <body>
-    <section class="hero" id="top">
-        <div class="hero-noise" aria-hidden="true"></div>
-        <div class="hero-glow" aria-hidden="true"></div>
-        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="page-shell">
+        <div class="grid-backdrop" aria-hidden="true"></div>
+        <div class="glow-backdrop" aria-hidden="true"></div>
+        <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-        <div class="hero-inner">
-            <div class="hero-copy">
-                <p class="eyebrow reveal">Anna Kudyba · Basel, Switzerland</p>
-                <h1 class="reveal delay-1">
-                    From complex data
-                    <span class="accent">to clear decisions</span>
-                </h1>
-                <p class="hero-lead reveal delay-2">
-                    I’m a <strong>business and data analyst</strong> who turns forecasting, operations,
-                    and market complexity into executive-ready stories. With experience across
-                    <strong>pharma, biotech, medtech, supply chain, finance, and branding</strong>,
-                    I build analysis that helps teams move faster and decide with confidence.
-                </p>
+        <section class="hero">
+            <header class="topbar reveal">
+                <nav class="nav" aria-label="Primary">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#tools">Tools</a>
+                    <a href="mailto:info@annakudyba.com?subject=Hello%20Anna" class="nav-cta">Contact</a>
+                </nav>
+            </header>
 
-                <div class="hero-actions reveal delay-3">
-                    <a class="button button-primary" href="#work">View selected work</a>
-                    <a class="button button-secondary" href="#contact">Start a conversation</a>
-                </div>
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <div class="intro-meta reveal delay-1">
+                        <div class="portrait-frame">
+                            <img src="assets/anna-portrait.jpg" alt="Portrait of Anna">
+                        </div>
+                        <p class="eyebrow">Basel · Data Visualization · Business Analysis</p>
+                    </div>
+                    <h1 class="reveal delay-2">
+                        Helping companies <span class="accent">simplify with data</span>
+                    </h1>
 
-                <div class="hero-meta reveal delay-4">
-                    <article class="meta-card">
-                        <p class="meta-label">Current Focus</p>
-                        <p class="meta-value">Global Sales &amp; Operations Planning storytelling for Roche Pharma</p>
-                    </article>
-                    <article class="meta-card">
-                        <p class="meta-label">Strength</p>
-                        <p class="meta-value">Connecting analytics, business context, and visual communication</p>
-                    </article>
-                    <article class="meta-card">
-                        <p class="meta-label">Tools</p>
-                        <p class="meta-value">Excel, Python, SQL, Tableau, Power BI, GitHub</p>
-                    </article>
+                    <p class="lead reveal delay-3" id="about">
+                        Hi! I’m Anna, a <strong>data visualization expert based in Basel, Switzerland</strong>.
+                        I help companies simplify processes to save time and money.
+                    </p>
+
+                    <p class="lead reveal delay-3">
+                        Having lived in <strong>Poland, Canada, Italy, Germany, and now Switzerland</strong>,
+                        I have a background in linguistics and digital marketing with branding, and I’m a
+                        certified business analyst and data scientist.
+                    </p>
+
+                    <p class="lead reveal delay-3">
+                        My experience ranges from branding in Poland, through supply chain and finance in Germany,
+                        to big pharma, biotech, and medtech in Switzerland. Since July 2025, I have been supporting
+                        the data analysis and storytelling for Roche’s Global S&amp;OP, designing executive-level visuals
+                        and insights that help demand planning across global pharma markets.
+                    </p>
+
+                    <div class="actions reveal delay-4">
+                        <a class="button button-primary" href="https://swift-vacuum-b37.notion.site/My-portfolio-14684102756280f082c8e48b4cd505b7" target="_blank" rel="noreferrer">See my projects</a>
+                        <a class="button button-secondary" href="https://www.linkedin.com/in/%E2%88%B4-anna-k-23a901111" target="_blank" rel="noreferrer">LinkedIn</a>
+                    </div>
+
+                    <div class="tools-grid reveal delay-4" id="tools">
+                        <article class="tool-card">
+                            <p class="tool-value">Python</p>
+                            <div class="tool-logo">
+                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python logo">
+                            </div>
+                        </article>
+                        <article class="tool-card">
+                            <p class="tool-value">SQL</p>
+                            <div class="tool-logo">
+                                <img
+                                    class="sql-glyph"
+                                    src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='14' rx='20' ry='8' fill='%231f3d60'/><path d='M12 14v28c0 4.4 9 8 20 8s20-3.6 20-8V14' fill='%231f3d60'/><ellipse cx='32' cy='42' rx='20' ry='8' fill='%233a5f88'/><ellipse cx='32' cy='28' rx='20' ry='8' fill='%23577ca6'/><text x='32' y='35' text-anchor='middle' font-family='Arial,sans-serif' font-size='10' font-weight='700' fill='white'>SQL</text></svg>"
+                                    alt="SQL database icon"
+                                >
+                            </div>
+                        </article>
+                        <article class="tool-card">
+                            <p class="tool-value">Excel</p>
+                            <div class="tool-logo">
+                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel logo">
+                            </div>
+                        </article>
+                        <article class="tool-card">
+                            <p class="tool-value">Alteryx</p>
+                            <div class="tool-logo">
+                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/alteryx.svg" alt="Alteryx logo">
+                            </div>
+                        </article>
+                        <article class="tool-card">
+                            <p class="tool-value">D3.js</p>
+                            <div class="tool-logo">
+                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/d3dotjs.svg" alt="D3.js logo">
+                            </div>
+                        </article>
+                        <article class="tool-card">
+                            <p class="tool-value">Tableau</p>
+                            <div class="tool-logo">
+                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg" alt="Tableau logo">
+                            </div>
+                        </article>
+                        <article class="tool-card">
+                            <p class="tool-value">Power BI</p>
+                            <div class="tool-logo">
+                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powerbi.svg" alt="Power BI logo">
+                            </div>
+                        </article>
+                        <article class="tool-card">
+                            <p class="tool-value">GitHub</p>
+                            <div class="tool-logo">
+                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub logo">
+                            </div>
+                        </article>
+                    </div>
+                    <div class="projects-strip" id="projects">
+                        <a class="project-card" href="https://swift-vacuum-b37.notion.site/Swiss-Geography-Data-Analysis-1c28410275628025a2d2e723ad84a0f1" target="_blank" rel="noreferrer">
+                            <div class="project-head">
+                                <h2>Swiss Geography: Data Analysis</h2>
+                                <span class="project-icon">◌</span>
+                            </div>
+                            <p>This project looks at over 2000 Swiss geo data entries for 26 cantons (data 2024). It explores population size, land use, age groups and location (elevation and coordinates). The goal is to understand patterns across different regions using basic statistics, charts, and maps.</p>
+                            <div class="project-tags">
+                                <span>Maps</span>
+                                <span>Statistics</span>
+                                <span class="project-arrow">Open →</span>
+                            </div>
+                        </a>
+
+                        <a class="project-card" href="https://swift-vacuum-b37.notion.site/Data-Wrangling-and-Exploration-Nutrition-Facts-1c284102756280a5b12ad75010f37161" target="_blank" rel="noreferrer">
+                            <div class="project-head">
+                                <h2>Data Wrangling and Exploration: Nutrition Facts</h2>
+                                <span class="project-icon">✦</span>
+                            </div>
+                            <p>This project explores and cleans a large dataset from Open Food Facts, which includes nutritional and product information for over 385,000 food items. The focus is on fixing missing or incorrect values, organizing the data for analysis, and creating clear visual summaries across products and countries.</p>
+                            <div class="project-tags">
+                                <span>Cleaning</span>
+                                <span>Exploration</span>
+                                <span class="project-arrow">Open →</span>
+                            </div>
+                        </a>
+
+                        <a class="project-card" href="https://swift-vacuum-b37.notion.site/Profitability-Sales-Dashboard-Power-BI-1f984102756280bb8cc9f1bc0835b46e" target="_blank" rel="noreferrer">
+                            <div class="project-head">
+                                <h2>Profitability &amp; Sales Dashboard (Power BI)</h2>
+                                <span class="project-icon">▣</span>
+                            </div>
+                            <p>This project involves the development of an interactive Power BI dashboard to analyze company performance across gross profit, quantity, and sales. It compares YTD and PYTD values, with a focus on profitability segmentation and regional performance using layered filters and custom visualizations.</p>
+                            <div class="project-tags">
+                                <span>Power BI</span>
+                                <span>Dashboard</span>
+                                <span class="project-arrow">Open →</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <aside class="hero-panel reveal delay-2">
-                <span class="panel-chip">Data Storytelling Signal</span>
-                <h2 class="panel-title">Insight should feel sharp, human, and immediately useful.</h2>
-                <p class="panel-copy">
-                    My work blends rigorous analysis with thoughtful presentation, so leadership teams
-                    can see what matters, align faster, and act on it.
-                </p>
-
-                <div class="signal-grid">
-                    <article class="signal-card">
-                        <p class="signal-title">Markets</p>
-                        <p class="signal-value">120+</p>
-                        <p class="signal-detail">Global portfolio visibility across planning and demand outlooks.</p>
-                    </article>
-                    <article class="signal-card">
-                        <p class="signal-title">Product Families</p>
-                        <p class="signal-value">60+</p>
-                        <p class="signal-detail">Executive-level narratives shaped around portfolio complexity.</p>
-                    </article>
-                    <article class="signal-card">
-                        <p class="signal-title">Approach</p>
-                        <p class="signal-value">Cross-functional</p>
-                        <p class="signal-detail">From commercial and supply chain questions to decision-ready views.</p>
-                    </article>
-                    <article class="signal-card">
-                        <p class="signal-title">Lens</p>
-                        <p class="signal-value">International</p>
-                        <p class="signal-detail">Lived and worked across Poland, Canada, Italy, Germany, and Switzerland.</p>
-                    </article>
-                </div>
-
-                <div class="tool-row" aria-label="Primary tools">
-                    <span class="tool-pill">Forecasting</span>
-                    <span class="tool-pill">Dashboards</span>
-                    <span class="tool-pill">Visualization</span>
-                    <span class="tool-pill">SQL</span>
-                    <span class="tool-pill">Python</span>
-                    <span class="tool-pill">Power BI</span>
-                </div>
-            </aside>
-        </div>
-
-        <div class="scroll-note">Scroll for projects</div>
-    </section>
+        </section>
+    </div>
 
     <script>
-        const canvas = document.getElementById("hero-canvas");
+        const canvas = document.getElementById("particle-canvas");
         const context = canvas.getContext("2d");
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         let particles = [];
-        let pointer = { x: window.innerWidth * 0.68, y: window.innerHeight * 0.4, active: false };
-        let animationFrameId;
+        let pointer = { x: window.innerWidth * 0.75, y: window.innerHeight * 0.35, active: false };
+        let rafId = 0;
+
+        function makeParticles() {
+            const count = window.innerWidth < 760 ? 42 : 82;
+            const palette = ["#1f3d60", "#2f8f88", "#d7a546", "#d86848"];
+            particles = Array.from({ length: count }, (_, index) => ({
+                baseX: Math.random() * window.innerWidth,
+                baseY: Math.random() * window.innerHeight,
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size: 1.3 + Math.random() * 2.3,
+                color: palette[index % palette.length],
+                phase: Math.random() * Math.PI * 2,
+                speed: 0.0008 + Math.random() * 0.001
+            }));
+        }
 
         function resizeCanvas() {
             canvas.width = window.innerWidth * window.devicePixelRatio;
@@ -532,54 +670,37 @@
             canvas.style.width = window.innerWidth + "px";
             canvas.style.height = window.innerHeight + "px";
             context.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
-            createParticles();
+            makeParticles();
         }
 
-        function createParticles() {
-            const total = window.innerWidth < 720 ? 54 : 96;
-            const colors = ["#19324f", "#48b8b0", "#ff7a59", "#f5c15d"];
-            particles = Array.from({ length: total }, (_, index) => ({
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                baseX: Math.random() * window.innerWidth,
-                baseY: Math.random() * window.innerHeight,
-                size: 1.5 + Math.random() * 2.5,
-                color: colors[index % colors.length],
-                phase: Math.random() * Math.PI * 2,
-                speed: 0.0008 + Math.random() * 0.0012
-            }));
-        }
-
-        function drawConnections() {
+        function drawLines() {
             for (let i = 0; i < particles.length; i += 1) {
                 for (let j = i + 1; j < particles.length; j += 1) {
-                    const p1 = particles[i];
-                    const p2 = particles[j];
-                    const dx = p1.x - p2.x;
-                    const dy = p1.y - p2.y;
-                    const distance = Math.hypot(dx, dy);
+                    const a = particles[i];
+                    const b = particles[j];
+                    const distance = Math.hypot(a.x - b.x, a.y - b.y);
 
-                    if (distance < 120) {
+                    if (distance < 112) {
                         context.beginPath();
-                        context.strokeStyle = `rgba(25, 50, 79, ${0.12 * (1 - distance / 120)})`;
+                        context.strokeStyle = `rgba(31, 61, 96, ${0.1 * (1 - distance / 112)})`;
                         context.lineWidth = 1;
-                        context.moveTo(p1.x, p1.y);
-                        context.lineTo(p2.x, p2.y);
+                        context.moveTo(a.x, a.y);
+                        context.lineTo(b.x, b.y);
                         context.stroke();
                     }
                 }
             }
         }
 
-        function drawParticles(time) {
+        function render(time) {
             context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
             particles.forEach((particle, index) => {
                 const driftX = Math.sin(time * particle.speed + particle.phase + index) * 16;
-                const driftY = Math.cos(time * particle.speed * 0.84 + particle.phase) * 14;
+                const driftY = Math.cos(time * particle.speed * 0.84 + particle.phase) * 13;
 
-                particle.x += ((particle.baseX + driftX) - particle.x) * 0.04;
-                particle.y += ((particle.baseY + driftY) - particle.y) * 0.04;
+                particle.x += ((particle.baseX + driftX) - particle.x) * 0.045;
+                particle.y += ((particle.baseY + driftY) - particle.y) * 0.045;
 
                 if (pointer.active) {
                     const dx = particle.x - pointer.x;
@@ -588,31 +709,27 @@
                     const influence = 160;
 
                     if (distance < influence && distance > 0) {
-                        const force = (1 - distance / influence) * 10;
-                        particle.x += (dx / distance) * force;
-                        particle.y += (dy / distance) * force;
+                        const push = (1 - distance / influence) * 10;
+                        particle.x += (dx / distance) * push;
+                        particle.y += (dy / distance) * push;
                     }
                 }
 
                 context.beginPath();
                 context.fillStyle = particle.color;
-                context.globalAlpha = 0.5;
+                context.globalAlpha = 0.42;
                 context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
                 context.fill();
             });
 
             context.globalAlpha = 1;
-            drawConnections();
+            drawLines();
+            rafId = requestAnimationFrame(render);
         }
 
-        function animate(time) {
-            drawParticles(time);
-            animationFrameId = requestAnimationFrame(animate);
-        }
-
-        if (!prefersReducedMotion) {
+        if (!reduceMotion) {
             resizeCanvas();
-            animate(0);
+            render(0);
 
             window.addEventListener("resize", resizeCanvas);
             window.addEventListener("pointermove", (event) => {
@@ -628,8 +745,8 @@
         }
 
         window.addEventListener("beforeunload", () => {
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
+            if (rafId) {
+                cancelAnimationFrame(rafId);
             }
         });
     </script>
